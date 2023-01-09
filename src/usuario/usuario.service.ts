@@ -3,10 +3,6 @@ import { Usuario } from "./usuario.entity";
 
 @Injectable()
 export class UsuarioService {
-    
-    
-   
-
     private usuarios: Array<Usuario> = [{
 
         id: 1,
@@ -15,7 +11,7 @@ export class UsuarioService {
         senha: '123456',
         nomeCompleto: 'John Mota',
         dataDeHoje: new Date()
-    }]
+    }];
 
  
     public cria(usuario: Usuario): Usuario {
@@ -25,6 +21,8 @@ export class UsuarioService {
     }
 
     public buscarPorNomeDeUsuario(nomeDeUsuario: string): Usuario {
-        return this.usuarios.find(usuario => usuario.nomeDeUsuario == nomeDeUsuario);
+        const usuarioEncontrado =  this.usuarios.find(usuario => usuario.nomeDeUsuario == nomeDeUsuario);
+
+        return usuarioEncontrado;
     }
 }

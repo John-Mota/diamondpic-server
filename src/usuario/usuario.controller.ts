@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, HttpStatus, Param, Post, Res } from "@nestjs/common";
 import { Usuario } from "./usuario.entity";
 import { UsuarioService } from "./usuario.service";
 
 @Controller('users')
 export class UsuarioController {
-    usuarioSevice: any;
+    
 
     constructor(private usuarioService: UsuarioService){}
 
@@ -16,10 +16,11 @@ export class UsuarioController {
     }
 
     @Post()
-    public cria(@Body() usuario: Usuario ): Usuario {
-        throw new Error('Erro de cadastro de usuário')
+    public cria(@Body() usuario: Usuario, @Res() res ) {
         const usuarioCriado = this.usuarioService.cria(usuario);
-
-        return usuarioCriado;
+        res.status(HttpStatus.CREATED)
+        .location(`/users/${usuarioCriado.nomeDeUsuario}`)
+        .json(usuarioCriado)
+       // return usuarioCriado;
     }
 }

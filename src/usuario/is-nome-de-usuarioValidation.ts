@@ -8,11 +8,9 @@ import { UsuarioService } from "./usuario.service";
 export class IsNomedeUsuarioUnicoConstraint implements ValidatorConstraintInterface {
 
     constructor(private usuarioService: UsuarioService){}
-    validate(nomeDeUsuario: string, validationArguments?: ValidationArguments): boolean | Promise<boolean> {
 
+    validate(nomeDeUsuario: string, validationArguments?: ValidationArguments): boolean | Promise<boolean> {
        return !!!this.usuarioService.buscarPorNomeDeUsuario(nomeDeUsuario);
-    
-    
     }
 }
 

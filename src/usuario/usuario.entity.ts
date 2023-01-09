@@ -3,13 +3,12 @@ import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 import { IsNomedeUsuarioUnico } from "./is-nome-de-usuarioValidation";
 
 export class Usuario{
-    
     id: number;
-
-   
+ 
    @Expose({
     name: 'userName'
-   }) @IsNomedeUsuarioUnico({
+   }) 
+   @IsNomedeUsuarioUnico({
         message: 'Nome de usuário deve ser único'
     })
     @IsNotEmpty({
@@ -20,7 +19,9 @@ export class Usuario{
     })
     nomeDeUsuario: string;
 
-   
+   @Expose({
+    name: 'email'
+   })
     @IsEmail({}, {
         message: 'Email precissa ser um endereço de email.'
     })
